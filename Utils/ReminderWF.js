@@ -9,24 +9,49 @@ function composeMessage(eventName,originTime,reminderTime) {
 }
 
 
-function quickReminder(time,eventName,offset,phoneNumber) {
+function quickReminder(reminderObj) {
 
-    //Create object only to potentially in the future store a record in a DB
-    var reminder = {
-        time: new Date(time),
-        eventName: eventName,
-        offset: offset
-    };
-
-    var appointmentTime = new Date(time);
-    var offsetType = typeof offset;
-    var reminderPool = DateTools.generateBackwardsDateList(appointmentTime,offset);
+    var appointmentTime = new Date(reminderObj.time);
+    var reminderPool = DateTools.generateBackwardsDateList(appointmentTime,reminderObj.offsets);
 
     var job = new CronJob(reminderPool[0],
-                            SmsTools.callableSendSMS(phoneNumber,composeMessage(eventName,time,reminderPool[0])),
+                            SmsTools.callableSendSMS(reminderObj.originNumber,
+                                composeMessage(reminderObj.eventName,
+                                    reminderObj.time,
+                                    reminderPool[0])),
                             null,true);
 
     return reminderPool[0];
 }
 
+
+function isFuture(dateTime) {
+    if (dateTime <= Date.now()) {return false;}
+    else {return true;}
+}
+
+function createAllReminders(eventParams) {
+    //Debug create two Reminders as a simple test
+    //Should send a message one and three minutes before
+    var miniTestTimes = [6000,180000];
+
+
+    //Production, use regular schedule.
+    var reminderTime = 0;
+    //DateTools.regularSchedule.forEach(function(timeOffset) {
+    miniTestTimes.forEach(function(timeOffset) {
+        var job;
+        reminderTime = new Date(eventParams.appointmentTime - timeOffset);
+
+        job = new CronJob(reminderTime,
+                                SmsTools.callableSendSMS(eventParams.originNumber,
+                                            composeMessage(eventParams.eventName,
+                                                        eventParams.appointmentTime,
+                                                        reminderTime)
+                                                                                    ),
+                            null, true);
+    });
+}
+
 module.exports.singleReminder = quickReminder;
+module.exports.spawnReminders = createAllReminders;

@@ -31,11 +31,21 @@ function oneMinuteReminder(req,res,next) {
 
 server.post('reminders/quicks/', quickReminder)
 function quickReminder(req,res,next) {
-    var time = new Date(req.body.time);
-    var offsets = req.body.offsets; //should be a list
-    var eventName = req.body.EventName;
-    var originNumber = req.body.phoneNumber;
-    var reminderTime = workflow.singleReminder(time,eventName,offsets,originNumber);
+    //var time = new Date(req.body.time);
+    //var offsets = req.body.offsets; //should be a list
+    //var eventName = req.body.EventName;
+    //var originNumber = req.body.phoneNumber;
+
+    var quick_reminder = {
+        time: new Date(req.body.time),
+        offsets: req.body.offsets,
+        eventName: req.body.EventName,
+        originNumber: req.body.phoneNumber
+
+    }
+
+
+    var reminderTime = workflow.singleReminder(quick_reminder);
     res.send(201, {message: 'created quick reminder at: ' + reminderTime.toString()})
 
     //Need a function to first parse date.
@@ -43,6 +53,29 @@ function quickReminder(req,res,next) {
     //calculate the reminder
     //send an http response
     //Schedule the cron job
+}
+
+
+/***
+ * HTTP Request should be a json object which contains:
+ * an "eventName" String
+ * a "time" js-Date parsable String in the GMT-600(CDT) Timezone
+ * a "phoneNumber" String with a in '1XXXXXXXXXX' format
+ */
+
+server.post('appointments/', bulkReminder);
+function bulkReminder(req,res,next) {
+    var appointmentParam = {
+        appointmentTime: new Date(req.body.time),
+        eventName: req.body.eventName,
+        originNumber: req.body.phoneNumber
+    };
+
+    //Horrible variable name... not sure at this point what I want to return.
+    var result = workflow.spawnReminders(appointmentParam);
+    res.send(201, {
+        message: 'Alright Alright Alright'
+    })
 }
 
 server.listen(8085);
