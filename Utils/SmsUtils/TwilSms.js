@@ -1,11 +1,12 @@
 var config = require('../../config');
 var accountSid = config.twilioID;
 var authToken = config.twilioToken;
+var fromNumber = config.outgoingNumber;
 
 var client = require('twilio')(accountSid, authToken);
 
 var smsFactoryFromDefault = function(to,message) {
-    return {to: to, from: '+13126983174', body: message}
+    return {to: to, from: fromNumber, body: message}
 }
 
 //client.messages.create(smsFactoryFromDefault('13127990181','helloworld'));
