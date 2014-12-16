@@ -2,6 +2,7 @@
   "name": "SmsRestify",
   "version": "0.0.1",
   "dependencies": {
+    "cron": "^1.0.5",
     "restify": "^2.8.4"
   }
 }

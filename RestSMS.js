@@ -1,5 +1,6 @@
 var restify = require('restify');
 var twilSms = require('./Utils/SmsUtils/TwilSms');
+var workflow = require ('./Utils/ReminderWF');
 
 var server = restify.createServer({
     name: 'SmsReminderService',
@@ -27,5 +28,21 @@ function oneMinuteReminder(req,res,next) {
 
 }
 
+
+server.post('reminders/quicks/', quickReminder)
+function quickReminder(req,res,next) {
+    var time = new Date(req.body.time);
+    var offsets = req.body.offsets; //should be a list
+    var eventName = req.body.EventName;
+    var originNumber = req.body.phoneNumber;
+    var reminderTime = workflow.singleReminder(time,eventName,offsets,originNumber);
+    res.send(201, {message: 'created quick reminder at: ' + reminderTime.toString()})
+
+    //Need a function to first parse date.
+    //calculate 3 minutes before
+    //calculate the reminder
+    //send an http response
+    //Schedule the cron job
+}
 
 server.listen(8085);
