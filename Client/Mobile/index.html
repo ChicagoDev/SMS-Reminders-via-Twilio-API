@@ -31,41 +31,29 @@
 <body>
 <div class="container-fluid">
     <p class="lead text-center">Welcome to Forgetful Fairy. Never forget another appointment!</p>
-    <div class="row vertical-align" id="timeDiv">
-        <div class="col-xs-6">
-            <p>What time is your event?</p>
+
+    <form role="form">
+        <div class="form-group row">
+            <label for="time" class="col-xs-6">When?</label>
+            <input type="time" class="col-xs-6" id="time">
         </div>
 
-        <div class="col-xs-2">
-            <input type="time" id="time">
-        </div>
-    </div>
-    <div class="row" id="teleDiv">
-        <div class="col-xs-4">
-            <p>Who I calling?</p>
-        </div>
-        <div class="col-xs-4">
-            <input type="tel" id="phone">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-4">
-            <p>What day?</p>
-        </div>
-    </div>
-    <div class="row" id="dateDiv">
-        <div class="col-md-1">
-            <div id="datepicker"></div>
+        <div class="form-group row center-block">
+            <div class="col-lg-10">
+                <div id="datepicker"></div>
+            </div>
         </div>
 
-    </div>
-
-    <div class="row" id="submitButton">
-        <div class="col-xs-4">
-            <button type="button" class="btn btn-lg btn-primary">I'm a button bitch</button>
+        <div class="form-group row">
+            <label for="phone" class="col-sm-2">Your Digits?</label>
+            <input type="tel" class="col-sm-2" id="phone">
         </div>
-    </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Remind Me!</button>
+    </form>
+
 
 </div>
 
