@@ -79,78 +79,7 @@
 $('#datepicker').datepicker({
     todayHighlight: true
 });
-
-function appointmentFactory() {
-    var eventName,dateTime,phoneNumber;
-
-    eventName = $('#event').val();
-    phoneNumber = $('#phone').val();
-    dateTime = getAppointmentDate();
-
-    return {
-        eventName: eventName,
-        time: dateTime,
-        phoneNumber: phoneNumber
-    }
-}
-
-function parseTimeToMilli(time) {
-    var timeStrings = time.split(':');
-    var milliPerHour = 3600000;
-    var milliPerMinute = 60000;
-    var hours = parseInt(timeStrings[0]);
-    var minutes = parseInt(timeStrings[1]);
-    hours *= milliPerHour;
-    minutes *= milliPerMinute;
-    //total time
-    return hours+minutes;
-
-}
-
-//YAY! Works!
-function getAppointmentDate() {
-    var apptDateAndTime = new Date($('#datepicker').datepicker('getDate').setMilliseconds(parseTimeToMilli($('#time').val())));
-    return apptDateAndTime;
-}
-
-function postAppointment() {
-    $.post({
-        url:'http://localhost:8085/appointments',
-        data: JSON.stringify(appointmentFactory()),
-        crossDomain: true,
-        contentType: 'application/json'
-    });
-}
-
-function postAppAjax() {
-    var body = JSON.stringify(appointmentFactory());
-    console.log(body);
-    $.ajax({
-        url: 'http://localhost:8085/appointments',
-//        accepts: 'application/json',
-        type: 'POST',
-        data: body,
-        contentType: 'application/json',
-        crossDomain: true
-
-    });
-}
-
-function testPost() {
-    var jsonBody = "{\"eventName\": \"Fiesta Forever\",\"time\": \"Fri Dec 19 2014 19:08:00 GMT-0600 (CST)\",\"phoneNumber\": \"13127990181\"}";
-
-    $.ajax({
-        url: 'http://localhost:8085/appointments',
-//        accepts: 'application/json',
-        type: 'POST',
-        data: jsonBody,
-        contentType: 'application/json',
-        crossDomain: true
-
-    });
-
-}
-
 </script>
+<script src="../javascripts/ffairy.js"></script>
 </body>
 </html>
