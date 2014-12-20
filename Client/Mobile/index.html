@@ -15,14 +15,14 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
     <style>
-        .vertical-align {
-        display: flex;
-        align-items: center;
+        .col-centered{
+            float: none;
+            margin: 0 auto;
         }
     </style>
-    <![endif]-->
 </head>
 
 
@@ -34,12 +34,19 @@
 
     <form role="form">
         <div class="form-group row">
+            <div class="col-xs-6">
+                <label for="event">What you got brewing?</label>
+                <input type="text" id="event">
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="time" class="col-xs-6">When?</label>
             <input type="time" class="col-xs-6" id="time">
         </div>
 
         <div class="form-group row center-block">
-            <div class="col-lg-10">
+            <div class="col-lg-10 col-centered">
                 <div id="datepicker"></div>
             </div>
         </div>
@@ -73,20 +80,16 @@ $('#datepicker').datepicker({
     todayHighlight: true
 });
 
-function AppointmentFactoryFromDivs(EventName,EventTime,EventDate,OriginNumber) {
-    var eventName,time,phoneNumber;
+function appointmentFactory() {
+    var eventName,dateTime,phoneNumber;
 
-    eventName = EventName.val();
-    phoneNumber = OriginNumber.val();
-    var dateTimeMilli = EventDate.datepicker('getDate').getTime();
-    var dayTimeMill = parseTimeToMilli(EventTime.val());
-    time = new Date(dateTimeMilli+dayTimeMill);
-
-    console.log('Was this the time entered?\t' + time.toString());
+    eventName = $('#event').val();
+    phoneNumber = $('#phone').val();
+    dateTime = getAppointmentDate().toString();
 
     return {
         eventName: eventName,
-        time: time,
+        time: dateTime,
         phoneNumber: phoneNumber
     }
 }
@@ -108,6 +111,36 @@ function parseTimeToMilli(time) {
 function getAppointmentDate() {
     var apptDateAndTime = new Date($('#datepicker').datepicker('getDate').setMilliseconds(parseTimeToMilli($('#time').val())));
     return apptDateAndTime;
+}
+
+function postAppointment() {
+    $.post({
+        url:'http://localhost:8085/appointments',
+        data: JSON.stringify(appointmentFactory()),
+        crossDomain: true,
+        headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json',
+
+            'Access-Control-Allow-Origin':true
+
+        }
+    });
+}
+
+function testPost() {
+    var jsonBody = "{\"eventName\": \"Fiesta Forever\",\"time\": \"Fri Dec 19 2014 19:08:00 GMT-0600 (CST)\",\"phoneNumber\": \"13127990181\"}";
+
+    $.ajax({
+        url: 'http://localhost:8085/appointments',
+//        accepts: 'application/json',
+        type: 'POST',
+        data: jsonBody,
+        contentType: 'application/json',
+        crossDomain: true
+
+    });
+
 }
 
 </script>

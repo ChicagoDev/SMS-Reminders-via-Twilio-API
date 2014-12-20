@@ -7,9 +7,21 @@ var server = restify.createServer({
     version: '0.0.1'
 })
 
+//CORS
+server.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+    res.header("Access-Control-Max-Age", "1000");
+    next();
+});
+
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
+
+
+
 
 /***
  * HTTP Request should be a json object which contains:
@@ -20,6 +32,7 @@ server.use(restify.bodyParser());
 
 server.post('appointments/', bulkReminder);
 function bulkReminder(req,res,next) {
+
     var appointmentParam = {
         appointmentTime: new Date(req.body.time),
         eventName: req.body.eventName,
@@ -31,6 +44,7 @@ function bulkReminder(req,res,next) {
     res.send(201, {
         message: 'Alright Alright Alright'
     })
+    //??next();
 }
 
 server.listen(8085);
