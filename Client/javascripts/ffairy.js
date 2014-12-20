@@ -15,6 +15,10 @@ function appointmentFactory() {
     }
 }
 
+function jsonAppointment() {
+    return JSON.stringify(appointmentFactory());
+}
+
 function parseTimeToMilli(time) {
     var timeStrings = time.split(':');
     var milliPerHour = 3600000;
@@ -34,14 +38,11 @@ function getAppointmentDate() {
     return apptDateAndTime;
 }
 
-function postAppAjax() {
-    var body = JSON.stringify(appointmentFactory());
-    console.log(body);
+function postAppointment() {
     $.ajax({
         url: 'http://localhost:8085/appointments',
-//        accepts: 'application/json',
         type: 'POST',
-        data: body,
+        data: jsonAppointment(),
         contentType: 'application/json',
         crossDomain: true
 
