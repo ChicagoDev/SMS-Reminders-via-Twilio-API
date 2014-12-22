@@ -33,34 +33,44 @@
 <div class="container-fluid">
     <p class="lead text-center">Welcome to Forgetful Fairy. Never forget another appointment!</p>
 
-    <form role="form">
-        <div class="form-group row">
+    <div id="dragingForm">
+
+        <form role="form" class="form-horizontal" id="whatForm">
+        <div class="form-group row dragend-page">
             <div class="col-xs-6">
                 <label for="event">What you got brewing?</label>
                 <input type="text" id="event">
             </div>
         </div>
+        </form>
 
-        <div class="form-group row">
+        <form role="form" class="form-horizontal" id="whenForm">
+        <div class="form-group row dragend-page">
             <label for="time" class="col-xs-6">When?</label>
             <input type="time" class="col-xs-6" id="time">
         </div>
+        </form>
 
-        <div class="form-group row center-block">
+        <form role="form" class="form-horizontal" id="calendarForm">
+        <div class="form-group row center-block dragend-page">
             <div class="col-lg-10 col-centered">
                 <div id="datepicker"></div>
             </div>
         </div>
+            </form>
 
-        <div class="form-group row">
+        <form role="form" class="form-horizontal" id="phoneNumForm">
+        <div class="form-group row dragend-page">
             <label for="phone" class="col-sm-2">Your Digits?</label>
             <input type="tel" class="col-sm-2" id="phone">
+            <button type="button" class="btn btn-primary" id="btnSetReminder" onclick="postAppointment()">Remind Me!</button>
         </div>
+        </form>
 
 
 
-        <button type="button" class="btn btn-primary" id="btnSetReminder" onclick="postAppointment()">Remind Me!</button>
-    </form>
+
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -88,5 +98,9 @@ $('#datepicker').datepicker({
 });
 </script>
 <script src="../javascripts/ffairy.js"></script>
+<script src="../javascripts/dragend.js"></script>
+<script type="text/javascript">
+    $('#dragingForm').dragend();
+</script>
 </body>
 </html>
