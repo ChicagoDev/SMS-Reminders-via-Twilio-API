@@ -36,7 +36,7 @@
     <div id="dragingForm">
 
         <form role="form" class="form-horizontal" id="whatForm">
-        <div class="form-group row dragend-page">
+        <div class="form-group row">
             <div class="col-xs-*">
                 <label for="event">What you got brewing?</label>
                 <textarea class="form-control" rows="2" id="event"></textarea>
@@ -46,7 +46,7 @@
         </form>
 
         <form role="form" class="form-horizontal" id="whenForm">
-        <div class="form-group row dragend-page">
+        <div class="form-group row">
             <div class="col-xs-*">
                 <label for="time">When?</label>
                 <input type="time"id="time">
@@ -55,7 +55,7 @@
         </form>
 
         <form role="form" class="form-horizontal" id="calendarForm">
-        <div class="form-group row center-block dragend-page">
+        <div class="form-group row center-block">
             <div class="col-lg-10 col-centered">
                 <div id="datepicker"></div>
             </div>
@@ -63,7 +63,7 @@
             </form>
 
         <form role="form" class="form-horizontal" id="phoneNumForm">
-        <div class="form-group row dragend-page">
+        <div class="form-group row">
             <label for="phone" class="col-sm-2">Your Digits?</label>
             <input type="tel" class="col-sm-2" id="phone">
             <button type="button" class="btn btn-primary" id="btnSetReminder" onclick="postAppointment()">Remind Me!</button>
@@ -101,9 +101,5 @@ $('#datepicker').datepicker({
 });
 </script>
 <script src="../javascripts/ffairy.js"></script>
-<script src="../javascripts/dragend.js"></script>
-<script type="text/javascript">
-    $('#dragingForm').dragend();
-</script>
 </body>
 </html>
