@@ -47,7 +47,7 @@ function bulkReminder(req,res,next) {
 }
 
 
-var port = process.env.PORT || 8085;
+var port = process.env.PORT || 3000;
 server.listen(port, function() {
     console.log("Listening on " + port);
 });
