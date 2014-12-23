@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <title>Forgetful Fairy</title>
 
     <!-- Bootstrap -->
@@ -17,13 +17,6 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <style>
-        .col-centered{
-            float: none;
-            margin: 0 auto;
-        }
-    </style>
 </head>
 
 
@@ -32,48 +25,52 @@
 <body>
 <div class="container-fluid">
     <p class="lead text-center">Welcome to Forgetful Fairy. Never forget another appointment!</p>
+    <div class="row">
+        <div class="col-md-4 form-group">
 
-    <div id="dragingForm">
+            <label for="event">What you got brewing?</label>
+            <textarea class="form-control" rows="1" id="event"></textarea>
+        </div>
 
-        <form role="form" class="form-horizontal" id="whatForm">
-        <div class="form-group row">
-            <div class="col-xs-*">
-                <label for="event">What you got brewing?</label>
-                <textarea class="form-control" rows="2" id="event"></textarea>
-                <!--<input type="text" id="event">-->
+        <div class="col-md-4 form-group">
+            <label for="datepicker">When?...</label>
+            <div class="input-group date" id="datepicker">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span><input type="text" class="form-control">
             </div>
         </div>
-        </form>
 
-        <form role="form" class="form-horizontal" id="whenForm">
-        <div class="form-group row">
-            <div class="col-xs-*">
-                <label for="time">When?</label>
-                <input type="time"id="time">
+
+        <div class="col-md-4 form-group">
+            <label for="time">...exactly:</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span> <input class="form-control" type="time"id="time">
             </div>
         </div>
-        </form>
 
-        <form role="form" class="form-horizontal" id="calendarForm">
-        <div class="form-group row center-block">
-            <div class="col-lg-10 col-centered">
-                <div id="datepicker"></div>
+        <div class="col-md-4 form-group">
+            <label for="phone">Your Digits?</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                <input class="form-control" type="tel"id="phone">
             </div>
         </div>
-            </form>
-
-        <form role="form" class="form-horizontal" id="phoneNumForm">
-        <div class="form-group row">
-            <label for="phone" class="col-sm-2">Your Digits?</label>
-            <input type="tel" class="col-sm-2" id="phone">
-            <button type="button" class="btn btn-primary" id="btnSetReminder" onclick="postAppointment()">Remind Me!</button>
-        </div>
-        </form>
-
-
-
-
     </div>
+
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-*">
+            <button type="button" class="btn-lg btn-primary form-control" id="btnSetReminder" onclick="postAppointment()">Remind Me!</button>
+        </div>
+    </div>
+
+    <div class="row" id="demo">
+        <h4 style="color: red">For demonstration purposes, set a reminder 1hr 2 minutes in the future</h4>
+    </div>
+
+
+
+
+
 
     <footer class="navbar-default navbar-fixed-bottom">
         <div class="container">
