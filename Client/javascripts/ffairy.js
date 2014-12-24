@@ -44,7 +44,10 @@ function postAppointment() {
         type: 'POST',
         data: jsonAppointment(),
         contentType: 'application/json',
-        crossDomain: true
+        crossDomain: true,
+        success: function() {
+            alert("Thank You! Plenty of Reminders will be sent your way.");
+        }
 
     });
 }
