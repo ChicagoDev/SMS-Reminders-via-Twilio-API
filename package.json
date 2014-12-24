@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "dependencies": {
     "cron": "^1.0.5",
-    "restify": "^2.8.4"
+    "restify": "^2.8.4",
+    "twilio": "^1.10.0"
+  },
+  "scripts": {
+    "start": "node RestSMS.js"
   }
 }
