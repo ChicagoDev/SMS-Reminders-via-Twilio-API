@@ -40,7 +40,7 @@ function getAppointmentDate() {
 
 function postAppointment() {
     $.ajax({
-        url: 'http://api.forgetfulfairy.com/appointments',
+        url: 'http://localhost:3000/appointments',
         type: 'POST',
         data: jsonAppointment(),
         contentType: 'application/json',
