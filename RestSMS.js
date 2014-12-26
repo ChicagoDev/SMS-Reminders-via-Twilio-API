@@ -9,7 +9,9 @@ var server = restify.createServer({
 
 //CORS
 server.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:8000");
+    res.header("Access-Control-Allow-Origin", "http://www.forgetfulfairy.com");
+    res.header("Access-Control-Allow-Origin", "http:/localhost:8000");
+    res.header("Access-Control-Allow-Origin", "http:/localhost:9000");
     res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     next();
