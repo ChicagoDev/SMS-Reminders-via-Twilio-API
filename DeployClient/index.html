@@ -7,8 +7,8 @@
     <title>Forgetful Fairy</title>
 
     <!-- Bootstrap -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../bower_components/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet">
     <link href="sticky-footer.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -18,6 +18,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <style>
         #what {text-align: center}
+        #ff-title {margin-bottom: 10% !important;}
+
     </style>
     <![endif]-->
 </head>
@@ -29,8 +31,8 @@
     <div class="row">
 
         <div class="col-xs-12 form-group ">
-            <p class="lead text-center">Welcome to Forgetful Fairy. Never forget another appointment!</p>
-            <a href="whatisff.html" id="what"><h4>What is this?</h4></a>
+            <p class="lead text-center" id="ff-title">Welcome to Forgetful Fairy!</p>
+            <p class="prompt">I send you text-message reminders at an increasing frequency for important events. Provide your event details and mobile number to subscribe for free:</p>
 
             <label for="event">What you got brewing?</label>
             <textarea class="form-control" rows="1" id="event"></textarea>
@@ -81,7 +83,7 @@
 
 
 
-    <footer class="navbar-default navbar-fixed-bottom">
+    <footer class="navbar-default">
         <div class="container">
             <p class="text-muted"><a href="disclaimer.html">Disclaimer: This is ALPHA Software!</a></p>
         </div>
@@ -98,15 +100,15 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript">
-$('#datepicker').datepicker({
-    todayHighlight: true
-});
+    $('#datepicker').datepicker({
+        todayHighlight: true
+    });
 </script>
-<script src="../javascripts/ffairy.js"></script>
+<script src="javascripts/ffairy.js"></script>
 </body>
 </html>
