@@ -31,3 +31,9 @@ bower_components
 
 #deploy script
 deployFF.com.zsh
+
+config.js
+
+#EB Deployment Archives
+*.zip
+
