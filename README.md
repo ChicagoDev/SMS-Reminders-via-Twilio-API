@@ -1,4 +1,4 @@
-# Forgetful Fairy
+# ForgetMeNot
 
 ## Node.js + HTML5 + Bootstrap
 
